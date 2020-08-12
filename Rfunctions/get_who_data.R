@@ -76,7 +76,11 @@ df <- left_join(dfframe, wx) %>%
          iso3code,
          ou_date_match,
          iso2code) %>%
-  mutate_if(is.numeric, ~replace(., is.na(.), 0))  
+  mutate_if(is.numeric, ~replace(., is.na(.), 0))  %>%
+  mutate(cases_new=ifelse(date!=max(date),cases_new,NA)) %>%
+  mutate(cases_cum=ifelse(date!=max(date),cases_cum,NA)) %>%
+  mutate(deaths_new=ifelse(date!=max(date),deaths_new,NA)) %>%
+  mutate(deaths_cum=ifelse(date!=max(date),deaths_cum,NA)) %>%
 
 
 return(df)
