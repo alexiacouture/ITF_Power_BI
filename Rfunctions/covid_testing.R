@@ -160,6 +160,9 @@ function(z){
   tst_crossx<-left_join(tst_crossx, geodf)
   
   testinglong<-left_join(testinglong,geodf)
+   #remove Other WHO region
+  tst_crossx <- subset(tst_crossx, tst_crossx$who_region != "Other")
+  testinglong <- subset(testinglong, testinglong$who_region != "Other")
 
   if(z=="cross"){
     return(tst_crossx)
